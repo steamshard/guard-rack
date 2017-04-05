@@ -13,7 +13,6 @@ module Guard
         cmd = [options[:cmd]]
 
         cmd << configuration
-        cmd << host
         cmd << port
         cmd << daemon
         cmd << debug
@@ -40,12 +39,8 @@ module Guard
         ['--debug']
       end
 
-      def host
-        ['--host', options[:host]]
-      end
-
       def port
-        ['--port', options[:port].to_s]
+        ['-p', options[:port].to_s]
       end
 
       def server
