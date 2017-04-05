@@ -10,7 +10,6 @@ module Guard
     DEFAULT_OPTIONS = {
       port:           9292,
       host:           '0.0.0.0',
-      environment:    'development',
       start_on_start: true,
       force_run:      false,
       timeout:        20,
@@ -27,13 +26,13 @@ module Guard
 
     def start
       server = options[:server] ? "#{options[:server]} and " : ''
-      UI.info "Guard::Rack will now restart your app on port #{options[:port]} using #{server}#{options[:environment]} environment."
+      UI.info "Guard::Rack will now restart your app on port #{options[:port]} using #{server}."
       reload if options[:start_on_start]
     end
 
     def reload
       UI.info 'Restarting Rack...'
-      Notifier.notify("Rack restarting on port #{options[:port]} in #{options[:environment]} environment...", title: 'Restarting Rack...', image: :pending)
+      Notifier.notify("Rack restarting on port #{options[:port]}...", title: 'Restarting Rack...', image: :pending)
       if runner.restart
         UI.info "Rack restarted, pid #{runner.pid}"
         Notifier.notify("Rack restarted on port #{options[:port]}.", title: 'Rack restarted!', image: :success)

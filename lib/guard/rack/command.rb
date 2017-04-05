@@ -13,7 +13,6 @@ module Guard
         cmd = [options[:cmd]]
 
         cmd << configuration
-        cmd << environment
         cmd << host
         cmd << port
         cmd << daemon
@@ -39,10 +38,6 @@ module Guard
         return unless options[:debugger]
 
         ['--debug']
-      end
-
-      def environment
-        ['--env', options[:environment].to_s]
       end
 
       def host
